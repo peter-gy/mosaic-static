@@ -1,0 +1,35 @@
+{
+  "nodeModulesDir": "auto",
+  "compilerOptions": { "lib": ["deno.window", "dom", "dom.iterable"] },
+  "tasks": {
+    "build": "deno run -A main.ts build",
+    "demo": "deno task build examples/flights/build.ts --out dist/flights",
+    "demo:weather": "deno task build examples/weather/build.ts --out dist/weather",
+    "demo:wasm": "deno task build examples/flights/build.ts --out dist/flights-wasm --wasm",
+    "serve": "deno run --allow-net --allow-read jsr:@std/http@1.0.25/file-server dist --host 127.0.0.1 --port 8000",
+    "check": "deno fmt --check && deno lint && deno check main.ts src/**/*.ts examples/**/*.ts tests/**/*.ts scripts/*.ts",
+    "test": "deno test -A tests",
+    "test:browser": "deno run -A scripts/browser-test.ts",
+    "browser:install": "deno run -A npm:playwright@1.63.0/cli install chromium"
+  },
+  "fmt": { "exclude": ["dist", "nogit"] },
+  "lint": { "exclude": ["dist", "nogit"] },
+  "imports": {
+    "hyparquet": "npm:hyparquet@1.31.0",
+    "@duckdb/node-api": "npm:@duckdb/node-api@1.5.4-r.1",
+    "jsdom": "npm:jsdom@26.1.0",
+    "@types/jsdom": "npm:@types/jsdom@21.1.7",
+    "@napi-rs/canvas": "npm:@napi-rs/canvas@1.0.9",
+    "@duckdb/duckdb-wasm": "npm:@duckdb/duckdb-wasm@1.33.1-dev57.0",
+    "@noble/hashes/sha2.js": "npm:@noble/hashes@2.4.0/sha2.js",
+    "@std/assert": "jsr:@std/assert@1.0.19",
+    "@std/cli": "jsr:@std/cli@1.0.25",
+    "@std/path": "jsr:@std/path@1.1.4",
+    "@std/http": "jsr:@std/http@1.0.25",
+    "@uwdata/mosaic-core": "npm:@uwdata/mosaic-core@0.31.0",
+    "@uwdata/mosaic-sql": "npm:@uwdata/mosaic-sql@0.31.0",
+    "@uwdata/vgplot": "npm:@uwdata/vgplot@0.31.0",
+    "@uwdata/flechette": "npm:@uwdata/flechette@2.5.0",
+    "playwright": "npm:playwright@1.63.0"
+  }
+}
